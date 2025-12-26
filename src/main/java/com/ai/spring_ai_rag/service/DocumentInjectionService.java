@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/*
 import org.springframework.ai.document.Document;
 import org.springframework.ai.reader.tika.TikaDocumentReader;
 import org.springframework.ai.transformer.splitter.TextSplitter;
@@ -13,11 +14,14 @@ import org.springframework.ai.transformer.splitter.TokenTextSplitter;
 import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.simple.JdbcClient;
+*/ 
 
 //  --1--
 
 @Service
-public class DocumentInjectionService implements CommandLineRunner {
+public class DocumentInjectionService// implements CommandLineRunner 
+{
+    /*
 
     @Autowired
     private JdbcClient jdbcClient;
@@ -40,4 +44,6 @@ public class DocumentInjectionService implements CommandLineRunner {
             vectorStore.accept(textChunks);
         }
     }
+    
+     */
 }
