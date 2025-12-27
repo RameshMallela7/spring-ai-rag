@@ -8,10 +8,12 @@ public class NormalPromptService {
 
     private ChatClient chatClient;
 
-    
+   public NormalPromptService(ChatClient.Builder chatClientBuilder) {
+       this.chatClient = chatClientBuilder.build();
+   }
 
     public String normalProcessChat(String userMessage) {
-        String response = chatClient.prompt().user(userMessage).call().content();
+        String response = chatClient.prompt(userMessage).call().content();
         return "Processed message: " + response;
     }
 }
