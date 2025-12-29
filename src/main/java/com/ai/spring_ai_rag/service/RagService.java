@@ -1,5 +1,9 @@
 package com.ai.spring_ai_rag.service;
 
+import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.client.advisor.vectorstore.QuestionAnswerAdvisor;
+import org.springframework.ai.vectorstore.SearchRequest;
+import org.springframework.ai.vectorstore.VectorStore;
 /*
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.vectorstore.QuestionAnswerAdvisor;
@@ -11,8 +15,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class RagService {
-
-    /*
+/*
+    
     private final ChatClient chatClient;
 
 
@@ -31,5 +35,5 @@ public class RagService {
         String response = chatClient.prompt().user(userMessage).call().content();
         return "Processed message: " + response;
     }
-         */
+        */ 
 }

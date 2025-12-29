@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ai.spring_ai_rag.service.NormalPromptService;
+import com.ai.spring_ai_rag.service.RagService;
 
 
 
@@ -13,15 +13,16 @@ import com.ai.spring_ai_rag.service.NormalPromptService;
 @RequestMapping("/v1/ai")
 public class ControllerClass {
 
-    private final NormalPromptService normalPromptService;
+    private final RagService ragService;
 
-    public ControllerClass(NormalPromptService normalPromptService) {
-        this.normalPromptService = normalPromptService;
+    public ControllerClass(RagService ragService) {
+        this.ragService = ragService;
     }
 
     @PostMapping("/promptchat")
     public String chat(@RequestBody String message) {
-        return normalPromptService.normalProcessChat(message);
+        //return ragService.processChat(message);
+        return null;
     }
     
 }
