@@ -36,25 +36,25 @@ public class DocumentInjectionService implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		// Initialization logic here
-		logger.info("DocumentInjectionService : Checking and injecting documents into Vector Store if needed...");
+		logger.info("Document	InjectionService : Checking and injecting documents into Vector Store if needed...");
 		Integer count = jdbcClient.sql("SELECT count(*) FROM vector_store").query(Integer.class).single();
-		if (count == 0) {
+		logger.info("DocumentInjectionService : Current document count in Vector Store: " + count);
+		if (count == 10) {
 			logger.info("DocumentInjectionService : No documents found in Vector Store. Injecting documents...");
 			TikaDocumentReader tikaDocumentReader = new TikaDocumentReader(path);
 			// List<Document> documents =
 			// tikaDocumentReader.readDocumentsFromDirectory("path/to/your/documents");
 
 			List<Document> rawDocs = tikaDocumentReader.read();
-			List<Document> cleanTextDocs = rawDocs.stream().map(doc -> sanitizeDocument(doc)).filter(Objects::nonNull)
-					.toList();
+			//List<Document> cleanTextDocs = rawDocs.stream().map(doc -> sanitizeDocument(doc)).filter(Objects::nonNull).toList();
 
 			TextSplitter textSplitter = new TokenTextSplitter();
-			List<Document> textChunks = textSplitter.split(cleanTextDocs);
+			List<Document> textChunks = textSplitter.split(rawDocs);
 			logger.info("DocumentInjectionService : Number of document chunks to be injected: " + textChunks.size());
 
-			List<Document> safeChunks = textChunks.stream().filter(this::isPureText).toList();
-			logger.info("DocumentInjectionService : Is base64: " + isValidBase64(safeChunks));
-			vectorStore.add(safeChunks);
+			//List<Document> safeChunks = textChunks.stream().filter(this::isPureText).toList();
+			//logger.info("DocumentInjectionService : Is base64: " + isValidBase64(safeChunks));
+			vectorStore.add(textChunks);
 			logger.info("DocumentInjectionService : Document injection completed.");
 		}
 
